@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Yikai-coder&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在前面的几篇博客中我们成功在自己的电脑上把比赛跑起来了，但具体怎么跑起来的我们还是不太清楚，这一篇博客就简要介绍比赛是如何跑起来的。 一场Robocup2D的比赛主要分为server、monitor和client三个部分。 在server启动之后，会开放一个端口（一般是6000）用于本地的球队连接上去，如果是联机比赛那就是走一个ip地址+端口。之后我们利用脚本(start.sh)就可以快速启动我们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Yikai-coder&#39;s blog">
+<meta property="og:url" content="http://example.com/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94%E6%AF%94%E8%B5%9B%E8%BF%90%E8%A1%8C%E9%80%BB%E8%BE%91%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:site_name" content="Yikai-coder&#39;s blog">
+<meta property="og:description" content="在前面的几篇博客中我们成功在自己的电脑上把比赛跑起来了，但具体怎么跑起来的我们还是不太清楚，这一篇博客就简要介绍比赛是如何跑起来的。 一场Robocup2D的比赛主要分为server、monitor和client三个部分。 在server启动之后，会开放一个端口（一般是6000）用于本地的球队连接上去，如果是联机比赛那就是走一个ip地址+端口。之后我们利用脚本(start.sh)就可以快速启动我们">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201023224554547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NTX05ld2VyMTk4ODU=,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-03-26T01:26:02.938Z">
+<meta property="article:modified_time" content="2021-03-02T02:33:52.343Z">
+<meta property="article:author" content="Yikai-coder">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201023224554547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NTX05ld2VyMTk4ODU=,size_16,color_FFFFFF,t_70#pic_center">
+  
+    <link rel="alternate" href="/atom.xml" title="Yikai-coder's blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Yikai-coder&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Robocup2D入门笔记（3）——比赛运行逻辑简介" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94%E6%AF%94%E8%B5%9B%E8%BF%90%E8%A1%8C%E9%80%BB%E8%BE%91%E7%AE%80%E4%BB%8B/" class="article-date">
+  <time class="dt-published" datetime="2021-03-26T01:26:02.938Z" itemprop="datePublished">2021-03-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在前面的几篇博客中我们成功在自己的电脑上把比赛跑起来了，但具体怎么跑起来的我们还是不太清楚，这一篇博客就简要介绍比赛是如何跑起来的。</p>
+<p>一场Robocup2D的比赛主要分为server、monitor和client三个部分。</p>
+<p>在server启动之后，会开放一个端口（一般是6000）用于本地的球队连接上去，如果是联机比赛那就是走一个ip地址+端口。之后我们利用脚本(start.sh)就可以快速启动我们的球队生成12个进程（1个教练+11个球员），这些进程就能通过预先设置好的端口连接到服务器上，连接成功之后就会执行后面的代码，将球员放置到场上准备比赛，当双方都连接好之后，在server下达一个开球的指令(crtl+k)就会开启比赛。</p>
+<p>在比赛的过程中，我们看起来连续的图像实际上是离散的，1秒钟被分成了10个周期（也就是100ms一个周期），因为周期时间很短所以看起来就是一个连续的过程。在每个周期中，服务器都会发送信息到各个进程中，例如当前球员所能看到的听到的东西等；而每个进程也需要发送指令到服务器端，例如转动脖子，向前冲，踢球等，发送到server的指令会被server先检查一次，而且一个周期仅能发送一定数量的指令，防止恶意堵塞信道。如此循环下去直到6000个周期跑完比赛结束。</p>
+<p>而monitor则是在每个周期中把server模拟出来的场上的信息进行可视化，例如某个球员在哪，球在哪，离散的点因为周期很短所以看起来也会是连续的。</p>
+<p><img src="https://img-blog.csdnimg.cn/20201023224554547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NTX05ld2VyMTk4ODU=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>而在client中区分出了coach和player，coach这个client并不会显示在场上，也不会参与移动、踢球等指令，但是它可以发送信息给球员，而这个信息是不会受到球场噪音的干扰的（关于球场噪音可以看下一篇），但是会受到发送频率的限制。同时client也可以获得完整的球场信息，相当于一个拥有上帝视角的client，他可以审时度势做出球队整体的策略。</p>
+<p>上一篇：<a target="_blank" rel="noopener" href="https://blog.csdn.net/CS_Newer19885/article/details/108814256">Robocup2D入门笔记（2）——环境的配置与安装
+</a><br>下一篇<a target="_blank" rel="noopener" href="https://blog.csdn.net/CS_Newer19885/article/details/109263410">Robocup2D入门笔记(4)——常见模型
+</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94%E6%AF%94%E8%B5%9B%E8%BF%90%E8%A1%8C%E9%80%BB%E8%BE%91%E7%AE%80%E4%BB%8B/" data-id="ckmpminmb0001b8v84fl1g52c" data-title="" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89%E2%80%94%E2%80%94%E7%8E%AF%E5%A2%83%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%AE%89%E8%A3%85/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%884%EF%BC%89%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Others/" rel="tag">Others</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Others/" style="font-size: 10px;">Others</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89%E2%80%94%E2%80%94%E7%8E%AF%E5%A2%83%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%AE%89%E8%A3%85/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94%E6%AF%94%E8%B5%9B%E8%BF%90%E8%A1%8C%E9%80%BB%E8%BE%91%E7%AE%80%E4%BB%8B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%884%EF%BC%89%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%885%EF%BC%89%E2%80%94%E2%80%94agent2d%E7%90%83%E9%98%9F%E7%BB%93%E6%9E%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/26/Robpcup%202D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%886%EF%BC%89%E2%80%94%E2%80%94%E6%80%BB%E7%BB%93%E5%8F%8A%E5%90%8E%E7%BB%AD/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Yikai-coder<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

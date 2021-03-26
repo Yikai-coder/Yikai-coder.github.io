@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Yikai-coder&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="本篇博客将重点介绍agent2d这个底层球队，agent2d本身也是当前最常用的一个底层球队，是helios团队开发出的底层球队，方便我们能够快速上手，将自己的想法付诸实践。点击进入下载地址，注意要先安装librcsc然后再安装agent2d的球队代码。 一、球队框架agent2d的框架可以看下面这张图片：可以看到，agent2d总共有3个开始入口，分别是start.sh,start_offlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Yikai-coder&#39;s blog">
+<meta property="og:url" content="http://example.com/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%885%EF%BC%89%E2%80%94%E2%80%94agent2d%E7%90%83%E9%98%9F%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="Yikai-coder&#39;s blog">
+<meta property="og:description" content="本篇博客将重点介绍agent2d这个底层球队，agent2d本身也是当前最常用的一个底层球队，是helios团队开发出的底层球队，方便我们能够快速上手，将自己的想法付诸实践。点击进入下载地址，注意要先安装librcsc然后再安装agent2d的球队代码。 一、球队框架agent2d的框架可以看下面这张图片：可以看到，agent2d总共有3个开始入口，分别是start.sh,start_offlin">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201110200351492.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NTX05ld2VyMTk4ODU=,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-03-26T01:26:02.899Z">
+<meta property="article:modified_time" content="2021-03-02T03:17:08.543Z">
+<meta property="article:author" content="Yikai-coder">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201110200351492.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NTX05ld2VyMTk4ODU=,size_16,color_FFFFFF,t_70#pic_center">
+  
+    <link rel="alternate" href="/atom.xml" title="Yikai-coder's blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Yikai-coder&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Robocup2D入门笔记（5）——agent2d球队结构" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%885%EF%BC%89%E2%80%94%E2%80%94agent2d%E7%90%83%E9%98%9F%E7%BB%93%E6%9E%84/" class="article-date">
+  <time class="dt-published" datetime="2021-03-26T01:26:02.899Z" itemprop="datePublished">2021-03-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>本篇博客将重点介绍agent2d这个底层球队，agent2d本身也是当前最常用的一个底层球队，是helios团队开发出的底层球队，方便我们能够快速上手，将自己的想法付诸实践。<a target="_blank" rel="noopener" href="https://zh.osdn.net/projects/rctools/releases/p4887">点击进入下载地址，</a>注意要先安装librcsc然后再安装agent2d的球队代码。</p>
+<h1 id="一、球队框架"><a href="#一、球队框架" class="headerlink" title="一、球队框架"></a>一、球队框架</h1><p>agent2d的框架可以看下面这张图片：<img src="https://img-blog.csdnimg.cn/20201110200351492.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NTX05ld2VyMTk4ODU=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>可以看到，agent2d总共有3个开始入口，分别是start.sh,start_offline.sh以及train.sh，分别对应普通模式开始，离线状态开始以及训练模式开始。</p>
+<p>通过上面的脚本，开始运行main_player.cpp以及main_coach.cpp，这里面只用一个main函数，用于创建client并连线到服务器，从这里开始后面的一系列初始化的过程。</p>
+<p>下一层级为samplePlayer以及sampleCoach，这个类可以认为是球员以及教练的大脑，球员类从这里衍生出了交流类（communication）、世界模型类（worldModel）、行为类（behavior）、策略类（strategy）、角色类（role）等，之后会详细介绍。</p>
+<p>再往下是playerAgent类，这个类可以被认为是球员的身体类，它负责支配球员做出各种简单的动作，例如转身、踢球等。</p>
+<p>最底层是soccerAgent以及basicClient类。soccerAgent类负责处理服务器发来的各种信息，例如比赛开始、比赛中止等；而basicClient类负责与服务器完成通信，从上层接收并发送指令到服务器，将服务器发来的信息上传到上层类。可以认为soccerAgent类就是介于底层通信类和上层抽象球员类之间的一个桥梁</p>
+<h1 id="二、交流类"><a href="#二、交流类" class="headerlink" title="二、交流类"></a>二、交流类</h1><p>这里的交流类指的是球员之间以及球员和教练之间的交流，可以主要分为三个部分，分别是信息类（xxxMessage）、信息处理类（xxxMessageParser)以及其他类；</p>
+<p>在agent2d的球员交流之中，球员之间是用固定的信息模板来进行交流的，agent2d自带了一些固定的信息模板，例如要发送球的位置信息就得调用球的信息类来生成信息，生成一个带有固定前缀码（1个char）以及固定长度的信息，这里面就涉及信息的编码了；之后信息处理类先判断发送来的信息是否符合对应的要求（前缀码和长度），然后再对信息进行解码，获得信息并记录到memory类当中。</p>
+<h1 id="三、世界模型类"><a href="#三、世界模型类" class="headerlink" title="三、世界模型类"></a>三、世界模型类</h1><p>世界模型类（worldModel）是agent2d的一个非常重要的类，主要的功能就是记录球场的各种状态，例如球的位置，队友的位置，对手的位置，当然这里记录的信息是球员通过视觉或者听觉获得的，并不一定是正确的，会有一定的限制和偏差。</p>
+<p>它下设了各种各样的object用于例如记录球以及队友对手的各种属性等等，而这些object类又是继承于AbstractObject类。</p>
+<h1 id="四、策略类"><a href="#四、策略类" class="headerlink" title="四、策略类"></a>四、策略类</h1><p>策略（strategy）在agnet2d中指的是球队层面的一些战术配合，例如阵型、角色分配等。</p>
+<p>agent2d的阵型采用的是DT跑位，这里有必要多介绍一下跑位的相关知识。在Robocup2D的历史中，最开始是没有跑位的，这个时候球员基本都是追着球跑，没有什么战略性可言。之后随着项目的发展，出现了第一种跑位方式——SBSP，基于吸引子与排斥子的跑位，简单的说就是根据球的位置算出一个当前的跑位点，这样大家就不会一窝蜂的去追球了。之后继续发展，出现了DT跑位，通过delauny三角形先把球场划分开，然后以球在这些划分的三角形的交点处为情况设置阵型，而球不在交点的时候就采用三个交点的情形按比例计算出跑位点，<a target="_blank" rel="noopener" href="https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CMFD&dbname=CMFD201601&filename=1015624092.nh&v=AREn%25mmd2FqqQWB83e7Yze9xBqJjvoI8U4eKiL1oICxtXLv3EEj3vmetMRXFP4%25mmd2BAUHqns">具体可以看这篇文章</a>。agent2d采用的是后一种办法。对应的类就是DTFFormation类，agent2d也封装了其他的跑位类，但是没有调用，而这些类都是基于SampleFormation继承而来的。</p>
+<p>role类的话就是各种各样的球员角色了，例如守门员、前锋等，不同的角色会有不同的行为。</p>
+<h1 id="五、行为类"><a href="#五、行为类" class="headerlink" title="五、行为类"></a>五、行为类</h1><p>行为（behavior）在Robocup2D中可以认为是一系列动作（action）的组合，例如踢球是一个动作，但射门就是一个行为，因为射门需要首先确定踢球的角度力度等，踢这个动作只是简单的一环。</p>
+<p>agent2d中封装好了许多动作和行为，行为类会调用对应的动作类。如果要修改推荐也是从行为上修改，修改动作相对来说效果并不会非常明显。</p>
+<p>上一篇：<a target="_blank" rel="noopener" href="https://blog.csdn.net/CS_Newer19885/article/details/109263410">Robocup2D入门笔记(4)——常见模型
+</a><br>下一篇：<a target="_blank" rel="noopener" href="https://blog.csdn.net/CS_Newer19885/article/details/111238376">Robpcup 2D入门笔记（6）——总结及后续</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%885%EF%BC%89%E2%80%94%E2%80%94agent2d%E7%90%83%E9%98%9F%E7%BB%93%E6%9E%84/" data-id="ckmpminmh0004b8v864rjgub8" data-title="" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%884%EF%BC%89%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/26/Robpcup%202D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%886%EF%BC%89%E2%80%94%E2%80%94%E6%80%BB%E7%BB%93%E5%8F%8A%E5%90%8E%E7%BB%AD/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Others/" rel="tag">Others</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Others/" style="font-size: 10px;">Others</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89%E2%80%94%E2%80%94%E7%8E%AF%E5%A2%83%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%AE%89%E8%A3%85/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94%E6%AF%94%E8%B5%9B%E8%BF%90%E8%A1%8C%E9%80%BB%E8%BE%91%E7%AE%80%E4%BB%8B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%884%EF%BC%89%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%885%EF%BC%89%E2%80%94%E2%80%94agent2d%E7%90%83%E9%98%9F%E7%BB%93%E6%9E%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/26/Robpcup%202D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%886%EF%BC%89%E2%80%94%E2%80%94%E6%80%BB%E7%BB%93%E5%8F%8A%E5%90%8E%E7%BB%AD/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Yikai-coder<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

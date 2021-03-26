@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Yikai-coder&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言我个人不是Robocup2D的专业选手，仅仅是在大一刚入学就接手了这项难度很高的项目，很多东西我也是在摸索当中逐渐总结出来的，希望能帮到同为入门的其他人，毕竟对初学者而言Robocup2D的资料确实挺难找，想要系统的了解需要耗费大量的时间和精力。文中难免出现错误，希望看到的各位大神能够帮忙在评论区指正，也是对新手的很好的教学。目前打算做一套比较完整的入门笔记，从是什么开始，到基础知识的介绍，软">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Yikai-coder&#39;s blog">
+<meta property="og:url" content="http://example.com/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Yikai-coder&#39;s blog">
+<meta property="og:description" content="前言我个人不是Robocup2D的专业选手，仅仅是在大一刚入学就接手了这项难度很高的项目，很多东西我也是在摸索当中逐渐总结出来的，希望能帮到同为入门的其他人，毕竟对初学者而言Robocup2D的资料确实挺难找，想要系统的了解需要耗费大量的时间和精力。文中难免出现错误，希望看到的各位大神能够帮忙在评论区指正，也是对新手的很好的教学。目前打算做一套比较完整的入门笔记，从是什么开始，到基础知识的介绍，软">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200921214239214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NTX05ld2VyMTk4ODU=,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200921214338667.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020092121442163.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NTX05ld2VyMTk4ODU=,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020092616571928.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NTX05ld2VyMTk4ODU=,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-03-26T01:26:02.853Z">
+<meta property="article:modified_time" content="2021-03-02T02:28:11.430Z">
+<meta property="article:author" content="Yikai-coder">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200921214239214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NTX05ld2VyMTk4ODU=,size_16,color_FFFFFF,t_70#pic_center">
+  
+    <link rel="alternate" href="/atom.xml" title="Yikai-coder's blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Yikai-coder&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Robocup2D入门笔记（1）——概述" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E6%A6%82%E8%BF%B0/" class="article-date">
+  <time class="dt-published" datetime="2021-03-26T01:26:02.853Z" itemprop="datePublished">2021-03-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我个人不是Robocup2D的专业选手，仅仅是在大一刚入学就接手了这项难度很高的项目，很多东西我也是在摸索当中逐渐总结出来的，希望能帮到同为入门的其他人，毕竟对初学者而言Robocup2D的资料确实挺难找，想要系统的了解需要耗费大量的时间和精力。文中难免出现错误，希望看到的各位大神能够帮忙在评论区指正，也是对新手的很好的教学。<br>目前打算做一套比较完整的入门笔记，从是什么开始，到基础知识的介绍，软件及环境的安装，球队的基本组成，以及常用的开发工具的介绍，希望给新手提供一个全套的教程顺利渡过前期最艰苦的时期。</p>
+<h2 id="1-什么是Robocup2D"><a href="#1-什么是Robocup2D" class="headerlink" title="1. 什么是Robocup2D"></a>1. 什么是Robocup2D</h2><h3 id="1-1-Robocup"><a href="#1-1-Robocup" class="headerlink" title="1.1 Robocup"></a>1.1 Robocup</h3><p>Robocup是一项非营利性的科学挑战，目标是在2050年实现组建一支机器人足球队在世界杯赛场上战胜人类队伍，目前该项目已经进行了20余年。而在原来的足球的基础上，现在逐渐发展出其他许多不同的应用场景，例如家庭工作、救援等任务。详情见官网。<br><a target="_blank" rel="noopener" href="https://www.robocup.org/">Robocup的官网</a><br><img src="https://img-blog.csdnimg.cn/20200921214239214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NTX05ld2VyMTk4ODU=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200921214338667.png#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="1-2-Robcup2D"><a href="#1-2-Robcup2D" class="headerlink" title="1.2 Robcup2D"></a>1.2 Robcup2D</h3><p>Robocup2D是机器人足球的模拟比赛，足球赛的模拟分为2D与3D两种，其中2D历史更加悠久，是最早开始的比赛之一，而3D近年来也取得了长足的发展，相比2D也跟加贴近真实。<br><img src="https://img-blog.csdnimg.cn/2020092121442163.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NTX05ld2VyMTk4ODU=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>这里重点介绍2D比赛。2D比赛经过二十多年的发展，已经逐渐成为一项战术策略非常成熟的赛事了，许多人类足球的战术策略都被用到了这里面，例如阵型、盯防、跑位、角球战术等，而2D的限制使得在比赛中位置更加重要（因为球和球员都只能在2D的赛场上移动，因此占住了位置就是卡死了进攻以及防守的线路）。</p>
+<p>而当前世界上Robocup2D的顶尖球队有这么几支：来自日本的Helios，来自中科大WrightEagle，以及来自安徽工业大学的YuShan，其中Helios的开源底层代码agent2d是现在非常多球队的底层代码，是一套功能十分完善、适合开发的代码。这里顺便提一下，因为Robocup是一项研究型项目，所以代码的复用是被赛事官方所鼓励的，但是也不能直接全盘照抄（这种事发生过），赛事组委会赛后会询问你球队做了哪些改进。</p>
+<h2 id="2-关于Robocup2D的一些资源"><a href="#2-关于Robocup2D的一些资源" class="headerlink" title="2 关于Robocup2D的一些资源"></a>2 关于Robocup2D的一些资源</h2><p>国内虽然有Robocup2D的强队，但适合的资源数量不多，在这里统一整理一下：<br><a target="_blank" rel="noopener" href="https://ssim.robocup.org/">Robocup2D赛事官网</a>.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/rcsoccersim/">Robocup2D基础软件的GitHub地址</a></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/bcahlit/robocup2d_env_install?_from=gitee_search">Gitee的软件地址</a>如果忍受不了Github的下载速度也可以尝试这个，里面还集成了一键安装的脚本，可以实现傻瓜式安装</p>
+<p><a target="_blank" rel="noopener" href="http://archive.robocup.info/Soccer/Simulation/2D/">官方发布的资料</a></p>
+<p><a target="_blank" rel="noopener" href="http://ai.ustc.edu.cn/2d/">中科大的教程</a></p>
+<p><a target="_blank" rel="noopener" href="http://robot.hfut.edu.cn/shiyanshi/e/zydownloadlist.jsp?headid=28">Yushan的教程</a></p>
+<p><a target="_blank" rel="noopener" href="https://herodrigues.me/robocup2d-tutorial/index.html">agent2d的说明网站，不是很详细</a></p>
+<p><a target="_blank" rel="noopener" href="https://i.getshell.cn/tags/robocup/">博主九月大人的博客</a><br>最开始就是从这个博主的博客中对Robocup的代码有了一点认识才逐步入了门。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43665369/article/details/89931833">同样一个csdn的博主介绍agent2d的构成</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/markchalse/category_9147029.html">同样在做Robocup2D的博主，也是少见的近来还有更新的</a></p>
+<h2 id="3-Robocup2D需要哪些知识"><a href="#3-Robocup2D需要哪些知识" class="headerlink" title="3 Robocup2D需要哪些知识"></a>3 Robocup2D需要哪些知识</h2><h3 id="3-1-Linux操作系统"><a href="#3-1-Linux操作系统" class="headerlink" title="3.1 Linux操作系统"></a>3.1 Linux操作系统</h3><p>Robocup2D的服务器是运行在Linux操作系统下的，所以所有球队几乎都会在Linux环境下开发、编译、运行，所以需要掌握Linux操作系统的一些简单操作，例如编译、安装、运行等。</p>
+<h3 id="3-2-C"><a href="#3-2-C" class="headerlink" title="3.2 C++"></a>3.2 C++</h3><p>在Robocup2D当中，目前最主流的编程语言还是使用C++，当然也有部分球队会选择使用Java或者python，但是目前最主流的球队还是使用C++进行开发，特别是适用范围最广的Helio底层球队Agent2d是用C++进行开发，所以掌握C++的知识是很重要的。如果同样是大一初学刚刚学完一门编程语言（特别是用C语言入门的学生），那么在学习的时候需要把重点要放在C++中STL库的学习以及面向对象编程的学习。</p>
+<h3 id="3-3-Git"><a href="#3-3-Git" class="headerlink" title="3.3 Git"></a>3.3 Git</h3><p>Git对于程序员来说是一个很重要的工具，特别是在多人协同开发的时候更是需要有一个强大的工具来管理每个人写的代码，Git就是一个很好的工具。关于Git的使用网上已经有很多教程了，从cmd界面到GUI界面的都有很多资料，这里就不做赘述了。</p>
+<h3 id="3-3-检索资料的能力"><a href="#3-3-检索资料的能力" class="headerlink" title="3.3 检索资料的能力"></a>3.3 检索资料的能力</h3><p> Robocup2D的资料在网上其实是比较难找的，许多文章都是介绍到安装环境就截止了，少有的代码介绍和球队开发的介绍其实都不太足够而且比较零散，这个时候就需要有强大的信息检索能力，能够在众多杂乱的文章中提取出信息加以整合变成自己的知识。<br> 关于检索资料，可以尝试使用不同的搜索引擎进行搜索，采用更高效的搜索技巧来搜索资料，<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/28013848/answer/626643618">详情可以看这篇文章</a>。甚至在必要的时候可以科学上网在外网找资料，当然这也就需要下面这个能力。</p>
+<h3 id="3-4-英文能力"><a href="#3-4-英文能力" class="headerlink" title="3.4 英文能力"></a>3.4 英文能力</h3><p> Robocup毕竟是国外的比赛，甚至连说明书也都是用英文写的，很多的资料也都会使用英文，所以强大的英文能力以及对英文的熟练程度会很大程度上影响进程，当然这次项目也培养了我不惧怕英文的能力😂</p>
+<h3 id="3-5-阅读代码能力"><a href="#3-5-阅读代码能力" class="headerlink" title="3.5 阅读代码能力"></a>3.5 阅读代码能力</h3><p> 阅读代码对程序员来说是一个必不可少的过程，而在Robocup2D的开发过程中不可避免地就会要读代码，这对前期上手是非常重要的，但是常用的agent2d的代码就已经有10万行了，涉及到的文件更是非常繁多，所以沉住气读懂代码也是很重要的一环。以后会出一期博客介绍agent2d的结构以及代码构成，给有需要的人参考。</p>
+<h3 id="3-6-心理方面"><a href="#3-6-心理方面" class="headerlink" title="3.6 心理方面"></a>3.6 心理方面</h3><p> Robocup2D确实是一个非常复杂的项目，面对大量的代码，大量的文件，彼此之间还相互连接牵扯，对初学而言确实打击很大，所以需要有对抗挫折的能力以及在繁杂的事物中抽丝剥茧梳理的能力，但是只要开始走起来了，其实很多东西都会迎刃而解变得越来越简单，希望大家都能享受这样一个学习进步的过程。</p>
+<h1 id="4-Robocup2D是怎么运作的"><a href="#4-Robocup2D是怎么运作的" class="headerlink" title="4 Robocup2D是怎么运作的"></a>4 Robocup2D是怎么运作的</h1><p>这里仅仅简要的介绍一下整个程序是怎么运行的，具体的运行流程会在后面详细介绍。</p>
+<p>简单地说，就是先开启一个叫做server（服务器）的进程（可以看作一个程序），这个进程负责模拟场上的情况，也包括和比赛双方进行通信。而在此基础上，官方开发了一个monitor（监视器），用于把server模拟出的数据做一个可视化的处理展现在一个“球场”上。而我们要做的，就是开发一个程序，这个程序可以与server进行通信，接受server传来的信息，做出决策，然后给server重新发送命令让server去模拟。而更具体的，我方的11个球员实际上是独立的11个进程，被称为client（客户端），每一个client都具有完整的接收信息做出决策的能力，同时这些client之间<strong>不可以私自进行通信</strong>，其实就是模拟了11个独立的球员，人家不可能心有灵犀对吧😀。球员（或者说client）之间的通信同样得走server，然后再通过server发送给其他球员。<br><img src="https://img-blog.csdnimg.cn/2020092616571928.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NTX05ld2VyMTk4ODU=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>下一篇：<a target="_blank" rel="noopener" href="https://blog.csdn.net/CS_Newer19885/article/details/108814256">Robocup2D入门笔记（2）——环境的配置与安装</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E6%A6%82%E8%BF%B0/" data-id="ckmpminlt0000b8v8fqdegtjo" data-title="" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/03/26/Robpcup%202D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%886%EF%BC%89%E2%80%94%E2%80%94%E6%80%BB%E7%BB%93%E5%8F%8A%E5%90%8E%E7%BB%AD/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/26/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0Git/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Others/" rel="tag">Others</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Others/" style="font-size: 10px;">Others</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89%E2%80%94%E2%80%94%E7%8E%AF%E5%A2%83%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%AE%89%E8%A3%85/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94%E6%AF%94%E8%B5%9B%E8%BF%90%E8%A1%8C%E9%80%BB%E8%BE%91%E7%AE%80%E4%BB%8B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%884%EF%BC%89%E2%80%94%E2%80%94%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/26/Robocup2D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%885%EF%BC%89%E2%80%94%E2%80%94agent2d%E7%90%83%E9%98%9F%E7%BB%93%E6%9E%84/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/26/Robpcup%202D%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%886%EF%BC%89%E2%80%94%E2%80%94%E6%80%BB%E7%BB%93%E5%8F%8A%E5%90%8E%E7%BB%AD/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 Yikai-coder<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
